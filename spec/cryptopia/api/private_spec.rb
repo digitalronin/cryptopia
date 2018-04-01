@@ -113,5 +113,21 @@ RSpec.describe Cryptopia::Api::Base do
         expect(result["Data"]).to eq([44310, 44311])
       end
     end
+
+    describe '#submit_withdraw' do
+      it 'submits a withdrawal request' do
+        result = subject.submit_withdraw(
+          Currency: 'BTC',
+          Address: 'Ed24de14eE6c4143Be8251c5dc55f250xM',
+          Amount: 1.0
+        )
+
+        expect(result["Data"]).to eq({
+          "OrderId" => 23467,
+          "FilledOrders" => [44310, 44311]
+        })
+      end
+    end
+
   end
 end
